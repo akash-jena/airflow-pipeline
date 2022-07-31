@@ -2,7 +2,7 @@ name: Airflow-setup
 on:
   push:
     branches: [ main ]
- 
+
 jobs:
   airflow-setup-job:
     runs-on: ubuntu-latest
