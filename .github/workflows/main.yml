@@ -31,7 +31,6 @@ jobs:
           'git config --global --replace-all user.name "Akash J" && git config --global --replace-all user.email "akash.jena@krtrimaiq.ai"'
       - run: |
           ssh -i ~/.ssh/ssh-key.pem ${{ secrets.E2E_USER }}@${{ secrets.E2E_ADDRESS }} \
-          '
           if [ -d airflow-pipeline ]; 
           then cd airflow-pipeline
           && git status
@@ -51,11 +50,11 @@ jobs:
           && sed -i s:%_AIRFLOW_WWW_USER_USERNAME%:'"${{ secrets.AIRFLOW_USER}}"':g .env
           && sed -i s:%_AIRFLOW_WWW_USER_PASSWORD%:'"${{ secrets.AIRFLOW_PASSWD }}"':g .env
           && docker-compose up airflow-init; 
-          fi'
+          fi;
       - run: |
           ssh -i ~/.ssh/ssh-key.pem ${{ secrets.E2E_USER }}@${{ secrets.E2E_ADDRESS }} \
-          'cd airflow-pipeline &&
+          cd airflow-pipeline &&
           if [ docker ps | grep -q keyword ]; 
           then docker-compose down && docker-compose up -d --build; 
           else docker-compose up -d --build; 
-          fi;'
+          fi;
