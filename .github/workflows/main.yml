@@ -17,9 +17,9 @@ jobs:
       - run: pwd
       - run: 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
       - run: eval $(ssh-agent -s)
-      - run: apt-get install sshpass -y
-      - run: apt-get update -y
-      - run: apt-get -y install rsync
+      - run: sudo apt-get install sshpass -y
+      - run: sudo apt-get update -y
+      - run: sudo apt-get -y install rsync
       - run: |
           sshpass -p '${{ secrets.E2E_PASSWD }}' ssh ${{ secrets.E2E_USER }}@${{ secrets.E2E_ADDRESS }} \
           'git config --global --replace-all user.name "Akash J"
