@@ -17,11 +17,23 @@ jobs:
       - run: pwd
       - run: 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
       - run: eval $(ssh-agent -s)
+      - run: mkdir -p ~/.ssh
+      - run: chmod 700 ~/.ssh
+      - run: cat ${{ SSH_KEY }}
+      - run: echo "$(cat $SSH_KEY_EC2)" >> ~/.ssh/ssh-key.pem
+      - run: chmod 400 ~/.ssh/ssh-key.pem
+      - run: cat ~/.ssh/ssh-key.pem
+      - run: echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
       - run: sudo apt-get install sshpass -y
       - run: sudo apt-get update -y
       - run: sudo apt-get -y install rsync
       - run: |
-          sshpass -p ${{ secrets.E2E_PASSWD }} ssh ${{ secrets.E2E_USER }}@${{ secrets.E2E_ADDRESS }} \
+          ssh -i ~/.ssh/ssh-key.pem ${{ secrets.E2E_USER }}@${{ secrets.E2E_ADDRESS }} \
+          'git config --global --replace-all user.name "Full Name"
+          && git config --global --replace-all user.email "email@email.com"
+          '
+      - run: |
+          ssh -i ~/.ssh/ssh-key.pem ${{ secrets.E2E_USER }}@${{ secrets.E2E_ADDRESS }} \
           '
           if [ -d airflow-pipeline ]; 
           then cd airflow-pipeline
@@ -44,7 +56,7 @@ jobs:
           && docker-compose up airflow-init; 
           fi'
       - run: |
-          sshpass -p ${{ secrets.E2E_PASSWD }} ssh ${{ secrets.E2E_USER }}@${{ secrets.E2E_ADDRESS }} \
+          ssh -i ~/.ssh/ssh-key.pem ${{ secrets.E2E_USER }}@${{ secrets.E2E_ADDRESS }} \
           'cd airflow-pipeline &&
           if [ docker ps | grep -q keyword ]; 
           then docker-compose down && docker-compose up -d --build; 
