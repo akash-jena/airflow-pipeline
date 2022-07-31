@@ -6,7 +6,7 @@ Personal project for simple data pipeline using Airflow. Airflow will be install
 
 1. Set up EC2 server. Choose ubuntu. Download the ssh key (with .pem suffix). Open ports of the EC2 instance, especially port 8080.
 2. SSH inside your EC2 server. Install Docker and docker-compose.
-3. Create GitLab account. Create new repository on GitLab, and push this repository there.
+3. Create Github account. Create new repository on Github, and push this repository there.
 4. On your GitLab's project page, open Settings > CI/CD > Repository Variables. Configure several variables:<br>
     * _AIRFLOW_WWW_USER_PASSWORD -> Arbitrary password for Airflow (Variable)<br>
     * _AIRFLOW_WWW_USER_USERNAME -> Arbitrary username for Airflow (Variable)<br>
