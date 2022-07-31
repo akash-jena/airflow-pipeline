@@ -17,7 +17,7 @@ jobs:
       - run: pwd
       - run: 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
       - run: eval $(ssh-agent -s)
-      - run: apt-get install sshpass
+      - run: apt-get install sshpass -y
       - run: apt-get update -y
       - run: apt-get -y install rsync
       - run: |
