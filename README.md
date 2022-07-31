@@ -1,6 +1,6 @@
-# Airflow on Docker in EC2 + GitLab's CI/CD
+# Airflow on Docker in Ubuntu Server + Github's CI/CD
 
-Personal project for simple data pipeline using Airflow. Airflow will be installed inside Docker container, which will be deployed in Amazon's EC2. For continuous integration and continuous deployment (CI/CD), GitLab will be used.
+Personal project for simple data pipeline using Airflow. Airflow will be installed inside Docker container, which will be deployed in E2E Ubuntu server. For continuous integration and continuous deployment (CI/CD), Github will be used.
 
 ## Steps
 
