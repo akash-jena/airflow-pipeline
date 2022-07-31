@@ -21,11 +21,6 @@ jobs:
       - run: sudo apt-get update -y
       - run: sudo apt-get -y install rsync
       - run: |
-          sshpass -p '${{ secrets.E2E_PASSWD }}' ssh ${{ secrets.E2E_USER }}@${{ secrets.E2E_ADDRESS }} \
-          'git config --global --replace-all user.name "Akash J"
-          && git config --global --replace-all user.email "akash.jena@krtrimaiq.ai"
-          '
-      - run: |
           sshpass -p ${{ secrets.E2E_PASSWD }} ssh ${{ secrets.E2E_USER }}@${{ secrets.E2E_ADDRESS }} \
           '
           if [ -d airflow-pipeline ]; 
