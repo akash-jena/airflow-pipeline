@@ -28,8 +28,8 @@ jobs:
       - run: sudo apt-get -y install rsync
       - run: |
           ssh -i ~/.ssh/ssh-key.pem ${{ secrets.E2E_USER }}@${{ secrets.E2E_ADDRESS }} \
-          'git config --global --replace-all user.name "Full Name"
-          && git config --global --replace-all user.email "email@email.com"
+          'git config --global --replace-all user.name "Akash J"
+          && git config --global --replace-all user.email "akash.jena@krtrimaiq.ai"
           '
       - run: |
           ssh -i ~/.ssh/ssh-key.pem ${{ secrets.E2E_USER }}@${{ secrets.E2E_ADDRESS }} \
