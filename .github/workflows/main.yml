@@ -19,7 +19,6 @@ jobs:
       - run: eval $(ssh-agent -s)
       - run: mkdir -p ~/.ssh
       - run: chmod 700 ~/.ssh
-      - run: cat ${{ secrets.SSH_KEY }}
       - run: echo "${{ secrets.SSH_KEY }}" >> ~/.ssh/ssh-key.pem
       - run: chmod 400 ~/.ssh/ssh-key.pem
       - run: cat ~/.ssh/ssh-key.pem
